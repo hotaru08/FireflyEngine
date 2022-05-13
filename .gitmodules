@@ -1,6 +1,0 @@
-[submodule "dependancies"]
-	path = dependancies
-	url = https://github.com/ocornut/imgui.git
-[submodule "FireflyProject/dependancies"]
-	path = FireflyProject/dependancies
-	url = https://github.com/ocornut/imgui.git

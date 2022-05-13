@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
-* \file			EntryPoint.cpp
+* \file			FE_EntryPoint.cpp
 
 * \brief		First Point of Entry of any application developed using Firefly
 				Engine.

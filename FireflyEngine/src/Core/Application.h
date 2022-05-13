@@ -11,7 +11,7 @@ namespace FireflyEngine
 	// Specifications for defining an application 
 	struct AppSpecifications
 	{
-		const char* const m_
+		const char* const m_appName;
 	};
 
 	class Application final
