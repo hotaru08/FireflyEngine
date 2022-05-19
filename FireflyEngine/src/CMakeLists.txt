@@ -1,4 +1,5 @@
 ﻿# CMakeList.txt : CMake project for FireflyEngine
+# ------------------------------------------------------------------------------
 
 # CMake version
 cmake_minimum_required (VERSION 3.8)
