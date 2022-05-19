@@ -18,9 +18,9 @@ add_subdirectory ("FireflyEngine")
 set_target_properties(FireflyEngine PROPERTIES 
     FOLDER "Projects"
     VERSION ${PROJECT_VERSION}
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEngine/lib
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEngine/lib
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEngine/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEngine/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEngine/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEngine/bin
 )
 target_compile_options(FireflyEngine PRIVATE
   $<$<CXX_COMPILER_ID:MSVC>:/W4>
@@ -34,17 +34,19 @@ add_subdirectory ("FireflyEditor")
 set_target_properties(FireflyEditor PROPERTIES 
     FOLDER "Projects"
     VERSION ${PROJECT_VERSION}
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEditor/bin
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEditor/bin-int
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build/out/FireflyEditor/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEditor/bin
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEditor/bin-int
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_build/_out/FireflyEditor/bin
 )
 target_compile_options(FireflyEditor PRIVATE
   $<$<CXX_COMPILER_ID:MSVC>:/W4>
   $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>
 )
 
-# Include source files from external dependancies to Firefly Engine
+# Include source files from external dependancies to Firefly Editor
 
+# Link libraries from external dependancies
+# target_link_libraries(FireflyEditor FireflyEngine.lib)
 
 # Set Startup Project
 set(STARTUP_PROJECT "FireflyEditor")

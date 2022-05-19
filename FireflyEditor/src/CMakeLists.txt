@@ -1,32 +1,31 @@
 ﻿# CMakeList.txt : CMake project for FireflyEditor root folder
-#
-
-# Marco to enumarate through sub directories in this folder
-macro(SUBDIRLIST result curdir)
-  FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
-  SET(dirlist "")
-  FOREACH(child ${children})
-    IF(IS_DIRECTORY ${curdir}/${child})
-        SET(dirlist ${dirlist} ${child})
-    ENDIF()
-  ENDFOREACH()
-  SET(${result} ${dirlist})
-endmacro()
-
-# Definitions
-SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR})
 
 # CMake version
 cmake_minimum_required (VERSION 3.8)
 
-# Add sub directories containing other files
+set( src_root_path ${CMAKE_CURRENT_SOURCE_DIR})
+file(
+    GLOB_RECURSE src_list 
+    LIST_DIRECTORIES false
+    "${src_root_path}/*.c*"
+    "${src_root_path}/*.h*"
+)
+
 # Set this project as a static library, to be used 
-add_executable (FireflyEditor FEditor_Main.cpp)
+add_executable (FireflyEditor ${src_list})
 
-FOREACH(subdir ${SUBDIRS})
-    add_subdirectory (${subdir})
-ENDFOREACH()
+# for each source file, add to filter and list under that
+foreach(_source IN ITEMS ${src_list})
+    get_filename_component(_source_path "${_source}" PATH)
+    file(RELATIVE_PATH _source_path_rel "${src_root_path}" "${_source_path}")
+    string(REPLACE "/" "\\" _group_path "${_source_path_rel}")
+    source_group("${_group_path}" FILES "${_source}")
+endforeach()
 
-set (MyProj_SOURCES )
-# Create the source groups for source tree with root at CMAKE_CURRENT_SOURCE_DIR.
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${MyProj_SOURCES})
+# Include directories for flexible path naming
+set (INCL_DIRS PRIVATE 
+    Interface
+)
+target_include_directories(FireflyEngine PRIVATE 
+    ${INCL_DIRS}
+)

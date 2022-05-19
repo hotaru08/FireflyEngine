@@ -14,8 +14,14 @@ namespace FireflyEngine
 		const char* const m_appName;
 	};
 
+	/*
+		Application class - handles the setup of an application instance
+	*/
 	class Application final
 	{
 
 	};
+
+	// To be implemented by client projects to create an application instance (window instance)
+
 }

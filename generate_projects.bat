@@ -1,5 +1,5 @@
 @echo OFF
 
-cmake -S . -B build/Projects
+cmake -S . -B _build/_projects
 echo.
 pause
